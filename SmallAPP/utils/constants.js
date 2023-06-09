@@ -22,7 +22,9 @@ const colors = {
 
 const errorMsg = {
     email_not_valid: 'Please enter valid email.',
-    credential_not_valid: 'Your credential are not valid!'
+    credential_not_valid: 'Your credential are not valid!',
+    gender_not_valid: 'You can only pass male/female.',
+    status_not_valid: 'You can only pass active/inactive.'
 }
 
 const staticCredential = {

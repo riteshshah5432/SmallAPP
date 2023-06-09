@@ -14,15 +14,32 @@ import {
 import Style from './style'
 import UserDetails from '../../component/UserDetails'
 import Loader from '../../component/Loader'
+import PrimaryButton from '../../component/PrimaryButton'
 import { Services, APIHandler } from '../../networking'
 
-const Home = () => {
+const Home = (props) => {
     const [isLoader, setIsLoader] = useState(false)
     const [userList, setUserList] = useState([])
 
     useEffect(() => {
         getUserData()
     }, [])
+
+    const renderItem = ({ item }) => {
+        return (
+            <View style={Style.cell}>
+                <UserDetails item={item} />
+            </View>
+        )
+    }
+
+    const goBack = () => {
+        getUserData()
+    }
+
+    const onPressAdd = () => {
+        props.navigation.navigate('AddUser', { goBack: goBack })
+    }
 
     const getUserData = async () => {
         setIsLoader(true)
@@ -37,14 +54,6 @@ const Home = () => {
         }
     }
 
-    const renderItem = ({ item }) => {
-        return (
-            <View style={Style.cell}>
-                <UserDetails item={item} />
-            </View>
-        )
-    }
-
     return (
         <SafeAreaView style={Style.container}>
             <FlatList
@@ -52,6 +61,11 @@ const Home = () => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 style={Style.flatlist}
+            />
+            <PrimaryButton
+                buttonTitle='Add User'
+                buttonStyle={{ marginTop: 20 }}
+                onPress={onPressAdd}
             />
             {isLoader && (<Loader />)}
         </SafeAreaView>
