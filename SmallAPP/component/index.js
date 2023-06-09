@@ -1,3 +1,5 @@
 export { default as Text } from './Text'
 export { default as TextInput } from './TextInput'
 export { default as PrimaryButton } from './PrimaryButton'
+export { default as UserDetails } from './UserDetails'
+export { default as Loader } from './Loader'

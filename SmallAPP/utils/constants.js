@@ -13,7 +13,11 @@ const colors = {
     error_text: 'red',
     themeColor: '#F93A4F',
     disable: '#F4F4F4',
-    disableText: '#C4C4C4'
+    disableText: '#C4C4C4',
+    active: '#c9f2c9',
+    active_text: '#009c1a',
+    inactive: '#feabab',
+    inactive_text: '#b62020'
 }
 
 const errorMsg = {
