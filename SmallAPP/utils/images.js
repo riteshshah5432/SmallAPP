@@ -5,6 +5,7 @@ const user3 = require('../assets/images/users/user3.png')
 const user4 = require('../assets/images/users/user4.png')
 const user5 = require('../assets/images/users/user5.png')
 const user6 = require('../assets/images/users/user6.png')
+const sideMenu = require('../assets/images/menu.png')
 
 export default {
     key,
@@ -13,5 +14,6 @@ export default {
     user3,
     user4,
     user5,
-    user6
+    user6,
+    sideMenu
 }

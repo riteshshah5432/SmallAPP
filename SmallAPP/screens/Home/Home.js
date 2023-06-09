@@ -10,19 +10,30 @@ import {
     SafeAreaView,
     FlatList,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import Style from './style'
 import UserDetails from '../../component/UserDetails'
 import Loader from '../../component/Loader'
 import PrimaryButton from '../../component/PrimaryButton'
 import { Services, APIHandler } from '../../networking'
+import { Constants, Images } from '../../utils';
 
 const Home = (props) => {
     const [isLoader, setIsLoader] = useState(false)
     const [userList, setUserList] = useState([])
 
     useEffect(() => {
+        props.navigation.setOptions({
+            headerLeft: () => {
+                return (
+                    <TouchableOpacity style={Style.navLeftButton} onPress={() => { props.navigation.openDrawer() }}>
+                        <Image source={Images.sideMenu} style={Style.navLeftImage} />
+                    </TouchableOpacity>
+                )
+            }
+        })
         getUserData()
     }, [])
 

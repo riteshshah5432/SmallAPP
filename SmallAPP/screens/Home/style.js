@@ -22,5 +22,17 @@ export default styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         alignSelf: 'center'
+    },
+    navLeftButton: {
+        height: 40,
+        width: 40,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    navLeftImage: {
+        height: '80%',
+        width: '80%',
+        resizeMode: 'contain',
+        tintColor: Constants.colors.themeColor
     }
 });
