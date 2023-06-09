@@ -33,7 +33,27 @@ const POST = async (url, body) => {
     }
 };
 
+const PUT = async (url, body) => {
+    try {
+        let URL = APIHandler.BaseURL + url
+        const response = await fetch(URL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+};
+
 export default {
     GET,
-    POST
+    POST,
+    PUT
 }

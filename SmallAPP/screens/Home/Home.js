@@ -9,7 +9,8 @@ import React, { useEffect, useState } from 'react';
 import {
     SafeAreaView,
     FlatList,
-    View
+    View,
+    TouchableOpacity
 } from 'react-native';
 import Style from './style'
 import UserDetails from '../../component/UserDetails'
@@ -27,10 +28,14 @@ const Home = (props) => {
 
     const renderItem = ({ item }) => {
         return (
-            <View style={Style.cell}>
+            <TouchableOpacity onPress={() => { onPressEditUser(item) }} style={Style.cell}>
                 <UserDetails item={item} />
-            </View>
+            </TouchableOpacity>
         )
+    }
+
+    const onPressEditUser = (item) => {
+        props.navigation.navigate('AddUser', { goBack: goBack, userObj: item })
     }
 
     const goBack = () => {

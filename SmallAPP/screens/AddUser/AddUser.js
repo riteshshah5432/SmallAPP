@@ -19,14 +19,21 @@ import { Constants, Global } from '../../utils';
 import { Services, APIHandler } from '../../networking'
 
 const AddUser = (props) => {
+    const { userObj, goBack } = props.route.params
     const [isLoader, setIsLoader] = useState(false)
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [gender, setGender] = useState('')
-    const [status, setStatus] = useState('')
+    const [name, setName] = useState(userObj?.name)
+    const [email, setEmail] = useState(userObj?.email)
+    const [gender, setGender] = useState(userObj?.gender)
+    const [status, setStatus] = useState(userObj?.status)
     const [emailErr, setEmailErr] = useState('')
     const [genderErr, setGenderErr] = useState('')
     const [statusErr, setStatusErr] = useState('')
+
+    useEffect(() => {
+        props.navigation.setOptions({
+            title: userObj ? 'Edit User' : 'Add User'
+        })
+    }, [])
 
     const enableButton = () => {
         if (name != '' && email != '' && gender != '' && status != '') {
@@ -62,7 +69,11 @@ const AddUser = (props) => {
 
     const onPressSubmit = () => {
         if (checkValidation()) {
-            addUserData()
+            if (userObj) {
+                editUserData()
+            } else {
+                addUserData()
+            }
         }
     }
 
@@ -83,7 +94,35 @@ const AddUser = (props) => {
                 {
                     text: 'OK', onPress: () => {
                         props.navigation.goBack()
-                        props.route.params.goBack()
+                        goBack()
+                    }
+                },
+            ])
+        } catch (error) {
+            alert(error)
+            setIsLoader(false)
+            // handle error or show an error message
+        }
+    }
+
+    const editUserData = async () => {
+        setIsLoader(true)
+        try {
+            const postData = {
+                "name": name,
+                "email": email,
+                "gender": gender,
+                "status": status
+            }
+            const apiUrl = APIHandler.updateUser + userObj?.id
+            const response = await Services.PUT(apiUrl, postData);
+            console.log('Response:', response);
+            setIsLoader(false)
+            Alert.alert('Response', response?.message, [
+                {
+                    text: 'OK', onPress: () => {
+                        props.navigation.goBack()
+                        goBack()
                     }
                 },
             ])
