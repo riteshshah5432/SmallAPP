@@ -39,7 +39,7 @@ const Home = (props) => {
 
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => { onPressEditUser(item) }} style={Style.cell}>
+            <TouchableOpacity onPress={() => { onPressEditUser(item) }} style={Style.cell} activeOpacity={1}>
                 <UserDetails item={item} />
             </TouchableOpacity>
         )
