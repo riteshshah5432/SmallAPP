@@ -12,10 +12,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login/Login'
 import KeyboardManager from 'react-native-keyboard-manager';
 import SideMenu from './SideMenu';
+import { useSelector } from "react-redux"
 
 const Stack = createNativeStackNavigator();
 
 const ApplicationNavigator = () => {
+    let isLogin = useSelector(state => state.userStore.isLogin)
     useEffect(() => {
         if (Platform.OS == 'ios') {
             KeyboardManager.setEnable(true);
@@ -26,7 +28,7 @@ const ApplicationNavigator = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='Main'>
+            <Stack.Navigator initialRouteName={isLogin ? 'Main' : 'Login'}>
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={SideMenu} options={{ headerShown: false }} />
             </Stack.Navigator>

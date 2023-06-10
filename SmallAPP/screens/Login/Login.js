@@ -17,8 +17,11 @@ import { Images, Constants, Global } from '../../utils'
 import Text from '../../component/Text'
 import TextInput from '../../component/TextInput'
 import PrimaryButton from '../../component/PrimaryButton'
+import { useDispatch, useSelector } from "react-redux"
+import { setIsUserLogin } from "../../store/UserStore"
 
-const Login = () => {
+const Login = (props) => {
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailErr, setEmailErr] = useState('')
@@ -49,7 +52,11 @@ const Login = () => {
 
     const onPressLogin = () => {
         if (checkValidation()) {
-            alert('Login')
+            dispatch(setIsUserLogin({ isLogin: true }))
+            props.navigation.reset({
+                index: 0,
+                routes: [{ name: 'Main' }]
+            })
         }
     }
 
