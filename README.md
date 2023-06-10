@@ -9,3 +9,6 @@ Login screen
 NOTES: Login credentials
 Email: Test@gmail.com
 Password: 123456 
+
+Diawi link for android: https://i.diawi.com/S3siHw
+APK link: https://drive.google.com/file/d/1vJF0J6D4XNPypcVLjhgvG-fkQzWeN6ej/view?usp=drive_link
