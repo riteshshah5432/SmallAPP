@@ -90,7 +90,7 @@ const AddUser = (props) => {
             const response = await Services.POST(apiUrl, postData);
             console.log('Response:', response);
             setIsLoader(false)
-            Alert.alert('Response', response?.message, [
+            Alert.alert('Response', response?.message ? response?.message : 'User added successfully!', [
                 {
                     text: 'OK', onPress: () => {
                         props.navigation.goBack()
@@ -118,7 +118,7 @@ const AddUser = (props) => {
             const response = await Services.PUT(apiUrl, postData);
             console.log('Response:', response);
             setIsLoader(false)
-            Alert.alert('Response', response?.message, [
+            Alert.alert('Response', response?.message ? response?.message : 'User edit successfully!', [
                 {
                     text: 'OK', onPress: () => {
                         props.navigation.goBack()
